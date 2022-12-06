@@ -191,6 +191,12 @@ class TORCH_API LazyGraphExecutor {
 
   virtual bool ShouldSyncTensor(const LazyTensorPtr tensor) const;
 
+  virtual void PrepareForCompile(std::unique_ptr<LoweringContext>& lowering_ctx,
+                                 const std::vector<LazyTensorPtr>& tensors,
+                                 c10::ArrayRef<std::string> devices,
+                                 const std::vector<size_t>& indices,
+                                 const std::vector<BackendDataPtr>& parameters_data) const;
+
   SyncTensorCollection CollectSyncTensors(
       const std::vector<LazyTensorPtr>& tensors,
       const SyncTensorsConfig& config);
